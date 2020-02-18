@@ -18,7 +18,7 @@
         "default": 
         {
             "//": "official robot settings",
-            "//2": "still need to find what the value is for top cam IP",
+            "//2": "still need to find what the value is for up cam IP",
             "envparam": "env=default",
             "robotid": "main2021",
             "camFeedPort": 5805,
@@ -1310,10 +1310,10 @@
                                 "url": "/stream/webrtc",
                                 "cls": "size1280"
                             },
-                            "_Top_deprecated":
+                            "_Up_deprecated":
                             {
                                 "protocol": "webrtc",
-                                "ip": "${drivertopcam}:8080",
+                                "ip": "${driverupcam}:8080",
                                 "url": "/stream/webrtc",
                                 "cls": "size1280"
                             }
@@ -1362,8 +1362,10 @@
                                         "radius": 50,
                                         "needleColor1": "rgba(255, 255, 0, 1)",
                                         "needleColor2": "rgba(0, 255, 0, 1)",
+                                        "targetAngle": "RobotStateEstimator/CameraToTargetAngle",
+                                        "targetColor": "rgba(255, 255, 255, 1)",
                                         "bgColor": "rgba(0, 0, 255, .8)",
-                                        "lineWidth": 2,
+                                        "lineWidth": 3,
                                         "value": "on"
                                     }
                                 },

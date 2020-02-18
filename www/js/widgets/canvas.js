@@ -628,6 +628,9 @@ class CanvasWidget extends Widget
         let bgColor = config.bgColor;
         let needleColor = config.needleColor1;
         let needleAngle = config.needleAngle;
+        let targetAngle = app.getValue(config.targetAngle);
+        let targetColor = config.targetColor;
+        let lineWidth = config.lineWidth;
         let w = this.canvasEl.getAttribute("width");
         let flip = false;
 
@@ -656,6 +659,8 @@ class CanvasWidget extends Widget
         ctx.fill();
         
         ctx.fillStyle = needleColor;
+        ctx.shadowBlur = 6;
+        ctx.shadowColor = "rgba(0, 0, 0, .9)";
         ctx.beginPath();
         if (flip)
         {
@@ -664,6 +669,15 @@ class CanvasWidget extends Widget
                 _d2r(item.value + 90) + _d2r(needleAngle/2), 
                 _d2r(item.value + 90) - _d2r(needleAngle/2), 
                 true);
+            ctx.lineTo(0, 0);
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.strokeStyle = targetColor;
+            ctx.lineWidth = lineWidth;
+            ctx.moveTo(radius * Math.cos(_d2r(targetAngle + 90)), radius * Math.sin(_d2r(targetAngle + 90)));
+            ctx.lineTo(0,0);
+            ctx.stroke();
         }
         else
         {
@@ -672,11 +686,19 @@ class CanvasWidget extends Widget
                 _d2r(item.value - 90) + _d2r(needleAngle/2), 
                 _d2r(item.value - 90) - _d2r(needleAngle/2), 
                 true);
+            ctx.lineTo(0, 0);
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.strokeStyle = targetColor;
+            ctx.lineWidth = lineWidth;
+            ctx.moveTo(radius * Math.cos(_d2r(targetAngle - 90)), radius * Math.sin(_d2r(targetAngle - 90)));
+            ctx.lineTo(0,0);
+            ctx.stroke();
         }
-        ctx.lineTo(0, 0);
-        ctx.fill();
         this._drawCompassEnd();
     }
+
     //change this so it's not year-specific.
     _drawCone(item)
     {
